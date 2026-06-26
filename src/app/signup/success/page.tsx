@@ -11,8 +11,9 @@ export default function SignupSuccessPage() {
           You&apos;re almost ready
         </h1>
         <p className="mt-4 text-sm leading-6 text-zinc-600">
-          We sent a confirmation link to your inbox. Once your email is
-          verified, return to login and start tracking your focus.
+          We sent a confirmation link to your inbox. Click the link to approve
+          your email and complete signup. After confirmation, continue to login
+          and start tracking your focus.
         </p>
 
         <div className="mt-8 space-y-4">

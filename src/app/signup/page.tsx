@@ -17,7 +17,7 @@ export default function SignupPage() {
     setError(null);
     setLoading(true);
 
-    const redirectUrl = `${window.location.origin}/signup/success`;
+    const redirectUrl = `${window.location.origin}/oauth/consent`;
 
     const { error } = await supabase.auth.signUp({
       email,

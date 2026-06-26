@@ -19,18 +19,30 @@ export default function LoginPage() {
     setMessage(null);
     setLoading(true);
 
-    const { error } = await supabase.auth.signInWithPassword({
+    const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
 
-    setLoading(false);
-
     if (error) {
       setError(error.message);
+      setLoading(false);
       return;
     }
 
+    const user = data.user ?? data.session?.user;
+    const isConfirmed = Boolean(user?.email_confirmed_at || user?.confirmed_at);
+
+    if (user && !isConfirmed) {
+      setError(
+        "Please verify your email before signing in. Check your inbox for the confirmation link.",
+      );
+      await supabase.auth.signOut();
+      setLoading(false);
+      return;
+    }
+
+    setLoading(false);
     router.push("/dashboard");
   };
 
